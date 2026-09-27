@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F8FAFC">
+  <meta name="description" content="Teman belajar Python dan data science. Pahami konsep, bahas kode, dan berlatih lewat percakapan.">
+  <title>Teman Data — Ruang belajar kamu</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <a href="#message" class="skip-link">Langsung ke pesan</a>
+  <aside class="sidebar" aria-label="Tentang ruang belajar">
+    <a class="brand" href="/" aria-label="Teman Data, halaman awal">
+      <img src="{{ url_for('static', filename='favicon.svg') }}" width="36" height="36" alt="">
+      <span>teman<span class="brand-accent">data</span><small>Belajar, satu pertanyaan lagi.</small></span>
+    </a>
+    <button class="new-chat" type="button" data-new-chat><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Chat baru</button>
+    <div class="sidebar-body">
+      <div class="room-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H9l-5 4V5Z"/><path d="M8 9h8M8 13h5"/></svg>Ruang belajar<span class="room-dot" aria-hidden="true"></span></div>
+      <div class="learning-note">
+        <span class="note-mark" aria-hidden="true">“</span>
+        <p>Nggak harus langsung paham.<br>Mulai dari penasaran.</p>
+        <span>Kamu boleh tanya dari dasar.</span>
+      </div>
+      <div class="topics"><p>Teman untuk eksplorasi</p><div><span>Python</span><span>Pandas</span><span>Statistik</span><span>Data science</span></div></div>
+    </div>
+    <div class="sidebar-footer"><span class="session-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5 8 9 8 9s8-4 8-9V7l-8-4Z"/><path d="m8 12 3 3 5-6"/></svg></span><div><strong>Sesi sementara</strong><p>Chat hilang saat halaman dimuat ulang.</p></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title"><span class="mobile-brand">temandata</span><span class="desktop-title">Ruang belajar</span><span class="header-separator" aria-hidden="true">/</span><span class="header-subtitle">Python &amp; data science</span></div>
+      <button class="mobile-new" type="button" data-new-chat aria-label="Chat baru"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <span class="header-note">Untuk rasa ingin tahu kamu</span>
+    </header>
+    {% if demo %}<div class="demo-banner" role="note">Mode demonstrasi — respons mock untuk pengujian UI, bukan hasil Gemini.</div>{% endif %}
+    {% if not configured %}<div class="config-banner" role="status">{{ config_error or 'Chat belum siap. Isi konfigurasi API di file .env, lalu jalankan ulang aplikasi.' }}</div>{% endif %}
+    <div class="scroll-area" id="scroll-area">
+      <section class="welcome chat-width" id="welcome" aria-labelledby="welcome-title">
+        <div class="data-illustration" aria-hidden="true">
+          <svg viewBox="0 0 148 94" fill="none"><path d="M20 9v68h114M20 55h114M20 33h114M49 9v68M78 9v68M107 9v68" class="plot-grid"/><path d="M27 64 48 56 67 59 87 34 111 27 131 12" class="plot-line"/><circle cx="27" cy="64" r="4"/><circle cx="48" cy="56" r="4"/><circle cx="67" cy="59" r="4"/><circle cx="87" cy="34" r="4"/><circle cx="111" cy="27" r="4"/><circle cx="131" cy="12" r="4"/></svg>
+          <span class="code-sticker">&gt;&gt;&gt; mulai()</span>
+        </div>
+        <h1 id="welcome-title">Hal besar dimulai dari<br>pertanyaan sederhana.</h1>
+        <p class="welcome-description">Teman belajar Python dan data science kamu.<br>Urai konsep yang rumit, bahas kode, atau coba satu latihan.</p>
+        <div class="prompt-grid">
+          <button class="prompt-card" type="button" data-prompt="Jelaskan perbedaan list dan dictionary di Python dengan contoh sederhana."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M8 14a6 6 0 1 1 8 0c-1 1-1 2-1 2H9s0-1-1-2Z"/></svg><strong>Jelaskan konsep</strong><span>List dan dictionary,<br>apa bedanya?</span><span class="card-corner" aria-hidden="true">↗</span></button>
+          <button class="prompt-card" type="button" data-prompt="Bantu aku memahami kode Python ini langkah demi langkah:\n\nangka = [2, 4, 6]\nrata_rata = sum(angka) / len(angka)\nprint(rata_rata)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg><strong>Bahas kode</strong><span>Pahami alurnya,<br>bukan sekadar hasilnya.</span><span class="card-corner" aria-hidden="true">↗</span></button>
+          <button class="prompt-card" type="button" data-prompt="Beri aku satu latihan Python tingkat pemula tentang mengolah list angka. Jangan berikan jawabannya dulu; tunggu jawabanku lalu beri feedback."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H5v16h14V5h-4M9 3h6v4H9zM8 12h8M8 16h5"/></svg><strong>Beri latihan</strong><span>Coba sendiri,<br>lalu bahas bareng.</span><span class="card-corner" aria-hidden="true">↗</span></button>
+        </div>
+        <p class="welcome-hint">Pilih ide di atas atau mulai dengan pertanyaanmu sendiri.</p>
+      </section>
+      <section class="messages chat-width" id="messages" aria-label="Percakapan" aria-busy="false" hidden></section>
+    </div>
+    <div class="composer-area">
+      <div class="chat-width">
+        <div class="composer-options"><span>Gaya jawaban</span><fieldset class="detail-choice"><legend class="sr-only">Panjang jawaban</legend><label><input type="radio" name="detail" value="singkat" checked><span>Singkat</span></label><label><input type="radio" name="detail" value="detail"><span>Detail</span></label></fieldset><span id="status" class="status" role="status" aria-live="polite"></span></div>
+        <form id="chat-form" class="composer" data-configured="{{ 'true' if configured else 'false' }}">
+          <label class="sr-only" for="message">Pesan untuk Teman Data</label>
+          <textarea id="message" name="message" maxlength="4000" rows="2" placeholder="Lagi penasaran tentang apa?" aria-describedby="input-hint char-count" required></textarea>
+          <div class="composer-bottom"><span id="input-hint">Shift + Enter untuk baris baru</span><span id="char-count">0 / 4.000</span><button id="send" type="submit" aria-label="Kirim pesan" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div>
+        </form>
+        <p class="footer-note">AI bisa keliru. Cek kembali kode dan penjelasannya. <span>Chat hilang saat refresh.</span></p>
+      </div>
+    </div>
+  </main>
+  <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-description"><form method="dialog"><div class="dialog-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H9l-5 4V5Z"/></svg></div><h2 id="reset-title">Mulai obrolan baru?</h2><p id="reset-description">Percakapan ini akan dihapus. Salin dulu kalau ada yang ingin kamu simpan.</p><div class="dialog-actions"><button value="cancel" class="secondary-button" autofocus>Batal</button><button value="reset" class="primary-button">Ya, chat baru</button></div></form></dialog>
+  <noscript><div class="noscript">Aktifkan JavaScript di browser untuk menggunakan chat.</div></noscript>
+</body>
+</html>
